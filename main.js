@@ -42,7 +42,29 @@ function countMouses (arr1, arr2) {
 
 const counted = countMouses(mouses, deepMouses);
 
-console.log(counted);
+console.log(`${counted} мышов`);
+
+console.log('');
+console.log('==============');
+console.log('');
+
+
+console.log('Фильтрация массива'); 
+// Создайте функцию getSpecialNumbers, которая будет принимать массив чисел и возвращать отфильтрованный массив
+// Основные требования:
+// 1. Функция должна называться getSpecialNumbers
+// 2. Функция должна отбросить все элементы исходного массива, которые не кратны 3. И вернуть массив из 
+// элементов кратных 3-м
+// 4. Исходный массив не должен поменяться
+
+const getSpecialNumbersArr = [3, 5, 7, 8, 9, 81, 27];
+
+function getSpecialNumbers(arr) {
+  return arr.filter(el => (el % 3 == 0));
+}
+
+console.log(getSpecialNumbers(getSpecialNumbersArr));
+console.log(getSpecialNumbersArr, 'исходный массив');
 
 console.log('');
 console.log('==============');
@@ -91,16 +113,23 @@ console.log('Плоский массив');
 const flatArrayArr = [46, 75, [5, 34, 80], 6, -1]
 
 function flatArray(arr) {
-  const arrCopy = [...arr];
+  // const arrCopy = [...arr];
 
-  arrCopy.forEach((el, i) => {
-    if (Array.isArray(el)) {
-      const arrDel = arrCopy.splice(i, 1);
-      console.log(arrDel, '??????????'); 
+  // arrCopy.forEach((el, i) => {
+  //   if (Array.isArray(el)) {
+  //     const arrDel = arrCopy.splice(i, 1);
+  //     console.log(arrDel, '??????????'); 
       
-      arrDel[0].forEach(el => arrCopy.push(el));
-    }
-  });
+  //     arrDel[0].forEach(el => arrCopy.push(el));
+  //   }
+  // });
+
+  const mappedArr = arr.map(el => {
+    if (Array.isArray(el)) {
+      return [...el];
+    } 
+    return el;
+  })
 
   function compare(a, b) {
     if (a > b) return 1;
@@ -108,14 +137,12 @@ function flatArray(arr) {
     if (a < b) return -1;
   }
 
-  arrCopy.sort(compare);
+  mappedArr.sort(compare);
 
-
-  return arrCopy;
+  return mappedArr;
 }
 
 console.log(flatArrayArr, 'исходный массив');
-console.log('');
 console.log(flatArray(flatArrayArr));
 
 console.log('');
@@ -185,7 +212,6 @@ function squareArray(arr) {
 }
 
 console.log(squareArrayArr, 'исходный массив');
-console.log('');
 console.log(squareArray(squareArrayArr));
 
 console.log('');
@@ -215,7 +241,6 @@ function reverseArray(arr) {
 // почему не поменялся исходный массив? reverse должен менять и вне функции меняет
 
 console.log(reverseArrayArr, 'исходный массив');
-console.log('');
 console.log(reverseArray(reverseArrayArr));
 
 console.log('');
